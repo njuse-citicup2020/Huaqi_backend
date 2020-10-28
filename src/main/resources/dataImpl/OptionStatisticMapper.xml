@@ -1,0 +1,38 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.Huaqi.data.StatisticMapper">
+
+
+    <select id="getOptionStatisticPerTenSeconds" parameterType="String" resultType="com.example.Huaqi.po.OptionStatisticPO" resultMap="OptionStatistic">
+        select * from `${table}` where option_date like #{time} and time_value <![CDATA[ < ]]>  0 order by time_value asc;
+    </select>
+    <select id="getETFStatisticPerTenSeconds" resultType="com.example.Huaqi.po.ETFStatisticPO" resultMap="ETFStatistic">
+        select * from `${table}` s where object_date <![CDATA[ <= ]]> #{time} order by object_date desc limit 1
+    </select>
+    <select id="getOptionByCodeAndTime" resultType="com.example.Huaqi.po.OptionStatisticPO" resultMap="OptionStatistic">
+        select * from `${table}` where option_date like #{time} and file_name like #{fileName}
+    </select>
+    <select id="getEarliestETFBid1" resultType="java.lang.Double">
+        select object_bid1_price from `${table}` order by object_date asc limit 1;
+    </select>
+    <select id="getHedgeOption" resultType="com.example.Huaqi.po.OptionStatisticPO" resultMap="OptionStatistic">
+    </select>
+
+    <resultMap id="OptionStatistic" type="com.example.Huaqi.po.OptionStatisticPO">
+        <result column="option_date" property="optionDate"/>
+        <result column="option_ask1_nums" property="ask1Nums"/>
+        <result column="option_ask1_price" property="ask1Price"/>
+        <result column="option_bid1_nums" property="bid1Nums"/>
+        <result column="option_bid1_price" property="bid1Price"/>
+        <result column="file_name" property="fileName"/>
+        <result column="time_value" property="timeValue"/>
+    </resultMap>
+
+    <resultMap id="ETFStatistic" type="com.example.Huaqi.po.ETFStatisticPO">
+        <result column="object_date" property="objectDate"/>
+        <result column="object_ask1_nums" property="ask1Nums"/>
+        <result column="object_ask1_price" property="ask1Price"/>
+        <result column="object_bid1_nums" property="bid1Nums"/>
+        <result column="object_bid1_price" property="bid1Price"/>
+    </resultMap>
+</mapper>
