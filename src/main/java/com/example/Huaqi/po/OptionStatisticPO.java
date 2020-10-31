@@ -13,6 +13,15 @@ public class OptionStatisticPO {
     private Double strikePrice; // 行权价
     private String optionCode; // 期权code，唯一标识符
     private Double timeValue; // 时间价值
+    private String optionType; // Call or Put
+
+    public String getOptionType() {
+        return optionType;
+    }
+
+    public void setOptionType(String optionType) {
+        this.optionType = optionType;
+    }
 
     public String getOptionDate() {
         return optionDate;
@@ -63,6 +72,8 @@ public class OptionStatisticPO {
         String[] strings = fileName.split("月|@");
         String price = strings[1].substring(0,4);
         String code = strings[2].substring(0,8)+".SH";
+        String type = fileName.charAt(5)=='沽'?"Put":"Call";
+        setOptionType(type);
         setOptionCode(code);
         setStrikePrice(Double.valueOf(price));
         this.fileName = fileName;
@@ -104,6 +115,7 @@ public class OptionStatisticPO {
                 ", strikePrice=" + strikePrice +
                 ", optionCode='" + optionCode + '\'' +
                 ", timeValue=" + timeValue +
+                ", optionType='" + optionType + '\'' +
                 '}';
     }
 }
