@@ -3,8 +3,8 @@ spring:
     url: jdbc:mysql://39.97.124.144:3306/huaqi?serverTimezone=CTT&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
 #    url: jdbc:mysql://172.17.211.31:3306/flask_ex?serverTimezone=CTT&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
-#    password: 123456
-    password: 123456Ddd..
+    password: aptx4869
+    #password: 123456Ddd..
     driver-class-name: com.mysql.cj.jdbc.Driver
     max-active: 200
     max-idle: 20
