@@ -1,6 +1,7 @@
 spring:
   datasource:
-    url: jdbc:mysql://39.97.124.144:3306/huaqi?serverTimezone=CTT&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
+    url: jdbc:mysql://localhost:3306/Huaqi?serverTimezone=CTT&characterEncoding=UTF-8&useSSL=false
+#    url: jdbc:mysql://39.97.124.144:3306/huaqi?serverTimezone=CTT&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
 #    url: jdbc:mysql://172.17.211.31:3306/flask_ex?serverTimezone=CTT&characterEncoding=UTF-8&useSSL=false&allowPublicKeyRetrieval=true
     username: root
     password: aptx4869
