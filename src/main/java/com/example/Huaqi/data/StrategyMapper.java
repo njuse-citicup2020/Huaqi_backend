@@ -10,12 +10,10 @@ import java.util.List;
 @Mapper
 @Repository
 public interface StrategyMapper {
-    /**
-     * 添加买卖到数据库
-     * @param strategy
-     * @return
-     */
-    int addStrategy(StrategyPO strategy);
-
-    List<StrategyPO> getStrategiesByTradeId(@Param("tradeId") Integer tradeId);
+    int addStrategy(StrategyPO strategyPO);
+    String getMinDateTime();
+    String getMaxDateTime();
+    List<StrategyPO> getStrategyInDateRank(@Param("start_time") String startTime, @Param("end_time") String endTime);
+    List<Double> getModelProfitByDateTime(@Param("date_time") String dateTime);
+    List<StrategyPO> getAllStrategy();
 }

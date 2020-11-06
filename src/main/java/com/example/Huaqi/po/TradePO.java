@@ -1,7 +1,7 @@
 package com.example.Huaqi.po;
 
 /**
- * 交易/套利类，包含多次买卖/Strategy
+ * 交易/套利类，包含多次买卖/deal
  */
 public class TradePO {
     private Integer id;

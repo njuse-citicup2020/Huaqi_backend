@@ -117,9 +117,21 @@ w.wss("10002477.SH,10002478.SH,10002479.SH,10002480.SH,10002481.SH,10002482.SH,1
 | start_time | 开始时间 | datetime    |                                                     |
 | end_time   | 结束时间 | datetime    | 未结束时可为空                                      |
 | status     | 状态     | varchar(32) | Pending:正在进行<br/>Success: 成功<br/>Failed: 失败 |
-| profit     | 收益     | double      | 未结束时可为空 
-| trade_name | 合约名称  | varchar(32) |                                                   |
-| deal_num   | 成交数量  | int         | default 0                                          |
+| profit     | 收益     | double      | 未结束时可为空                                      |
+| trade_name | 合约名称 | varchar(32) |                                                     |
+| deal_num   | 成交数量 | int         | default 0                                           |
+
+
+### strategy
+
+记录了对应日期时间的系统和大盘收益等策略信息
+
+| column       | name                           | type     | 备注                     |
+| ------------ | ------------------------------ | -------- | ------------------------ |
+| id           | 键                             | int      | key                      |
+| date_time    | 日期时间                       | datetime | 每个日期最多只有一条记录 |
+| modelProfit  | 截止到date时的系统（模型）收益 | double   |                          |
+| marketProfit | 截止到date时的大盘收益         | double   |                          |
 
 
 

@@ -2,7 +2,7 @@ package com.example.Huaqi.data;
 
 import com.example.Huaqi.enums.StrategyDealType;
 import com.example.Huaqi.enums.StrategyStatus;
-import com.example.Huaqi.po.StrategyPO;
+import com.example.Huaqi.po.DealPO;
 import org.junit.Test;
 import org.junit.runner.RunWith;
 import org.mybatis.spring.boot.test.autoconfigure.MybatisTest;
@@ -16,24 +16,24 @@ import java.util.Date;
 @RunWith(SpringRunner.class)
 @MybatisTest
 @AutoConfigureTestDatabase(replace = AutoConfigureTestDatabase.Replace.NONE)
-public class StrategyMapperTest {
+public class DealMapperTest {
     @Autowired
-    StrategyMapper strategyMapper;
+    DealMapper dealMapper;
 
     @Test
     public void test1(){
-        StrategyPO strategyPO = new StrategyPO();
+        DealPO dealPO = new DealPO();
         SimpleDateFormat ft = new SimpleDateFormat ("yyyy-MM-dd hh:mm:ss");
-        strategyPO.setDealType(StrategyDealType.Sell_50ETF.getType());
-        strategyPO.setDealTime(ft.format(new Date()));
-        strategyPO.setItem("10002423.SH");
-        strategyPO.setPrice(500.);
-        strategyPO.setPricePer(200.);
-        strategyPO.setVolume(4.);
-        strategyPO.setTransferFee(300.);
-        strategyPO.setStatus(StrategyStatus.Success.getStatus());
-        strategyPO.setTradeId(2);
-        strategyMapper.addStrategy(strategyPO);
-        System.out.println(strategyMapper.getStrategiesByTradeId(2));
+        dealPO.setDealType(StrategyDealType.Sell_50ETF.getType());
+        dealPO.setDealTime(ft.format(new Date()));
+        dealPO.setItem("10002423.SH");
+        dealPO.setPrice(500.);
+        dealPO.setPricePer(200.);
+        dealPO.setVolume(4.);
+        dealPO.setTransferFee(300.);
+        dealPO.setStatus(StrategyStatus.Success.getStatus());
+        dealPO.setTradeId(2);
+        dealMapper.addDeal(dealPO);
+        System.out.println(dealMapper.getDealsByTradeId(2));
     }
 }

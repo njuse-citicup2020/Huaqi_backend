@@ -1,0 +1,32 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE mapper PUBLIC "-//mybatis.org//DTD Mapper 3.0//EN" "http://mybatis.org/dtd/mybatis-3-mapper.dtd">
+<mapper namespace="com.example.Huaqi.data.StrategyMapper">
+
+    <insert id="addStrategy" parameterType="com.example.Huaqi.po.StrategyPO">
+        insert  into  strategy(date_time, modelProfit, marketProfit)
+        values (#{date_time},#{modelProfit},#{marketProfit})
+    </insert>
+
+    <select id="getMinDateTime" resultType="java.lang.String">
+        select min(date_time) from strategy
+    </select>
+
+    <select id="getMaxDateTime" resultType="java.lang.String">
+        select max(date_time) from strategy
+    </select>
+
+    <select id="getStrategyInDateRank" parameterType="java.lang.String" resultType="com.example.Huaqi.po.StrategyPO">
+        select * from strategy where date_time &gt;= #{start_time} and date_time &lt;= #{end_time}
+    </select>
+
+    <select id="getModelProfitByDateTime" parameterType="java.lang.String" resultType="java.lang.Double">
+        select modelProfit from strategy where date_time = #{date_time}
+    </select>
+
+    <select id="getAllStrategy" resultType="com.example.Huaqi.po.StrategyPO">
+        select * from strategy
+    </select>
+
+
+
+</mapper>

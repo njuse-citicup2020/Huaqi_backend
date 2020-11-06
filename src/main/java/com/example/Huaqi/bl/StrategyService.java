@@ -2,7 +2,6 @@ package com.example.Huaqi.bl;
 
 import com.example.Huaqi.vo.ResponseVO;
 
-
 public interface StrategyService {
     /**
      * 根据时间区间(月份)获取累计收益率和大盘的对比数据

@@ -204,7 +204,7 @@ CREATE TABLE `deal` (
   `item` varchar(64) NOT NULL,
   `option_name` varchar(64) NOT NULL,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=1 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=3 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 
 insert into deal(deal_type, deal_time, status, volume, price_per, transfer_fee, price, trade_id, item, option_name) values ('Buy_Put','2020-10-25 00:00:00','Success',5,100,100,-600,1,'10002423.SH','50ETF购10月2.95');
@@ -233,6 +233,28 @@ CREATE TABLE `trade` (
   `trade_name` varchar(32) NOT NULL,
   `deal_num` int(11) DEFAULT 0,
   PRIMARY KEY (`id`)
-) ENGINE=InnoDB AUTO_INCREMENT=2 DEFAULT CHARSET=utf8;
+) ENGINE=InnoDB AUTO_INCREMENT=4 DEFAULT CHARSET=utf8;
 /*!40101 SET character_set_client = @saved_cs_client */;
 insert into trade(trade_type, start_time, end_time, status, profit, trade_name, deal_num) values ('unknown','2020-10-25 00:00:00','2020-10-27 00:00:00','Success',8888,'10002423.SH',0);
+
+
+--
+-- Table structure for table `strategy`
+--
+
+DROP TABLE IF EXISTS `strategy`;
+/*!40101 SET @saved_cs_client     = @@character_set_client */;
+/*!40101 SET character_set_client = utf8 */;
+CREATE TABLE `strategy` (
+  `id` int(11) NOT NULL AUTO_INCREMENT,
+  `date_time` datetime NOT NULL,
+  `modelProfit` double NOT NULL,
+  `marketProfit` double NOT NULL,
+  PRIMARY KEY (`id`)
+) ENGINE=InnoDB AUTO_INCREMENT=5 DEFAULT CHARSET=utf8;
+/*!40101 SET character_set_client = @saved_cs_client */;
+insert into strategy(date_time, modelProfit, marketProfit) values ("2020-10-22 00:00:00",200,100);
+insert into strategy(date_time, modelProfit, marketProfit) values ("2020-10-27 00:00:00",100,150);
+insert into strategy(date_time, modelProfit, marketProfit) values ("2020-10-27 00:00:00",250,200);
+insert into strategy(date_time, modelProfit, marketProfit) values ("2020-10-28 00:00:00",200,100);
+insert into strategy(date_time, modelProfit, marketProfit) values ("2020-10-30 00:00:00",300,200);
