@@ -1,9 +1,15 @@
 # 更新日志
 
+## 2020/11/7
+
++ 完成接口9~13，其中接口11需要等商院
++ 修改了sql文件，更新后的sql文件为citicup2.sql
++ 完成接口测试，但service层的具体逻辑没有测试
+
 ## 2020/11/6
 
 + 完成接口6~8，通过postman单接口测试
-+ 修改了sql文件以及对应mapper等，更新后的sql文件为citicup2.sql
++ 修改了sql文件以及对应mapper等，注意原来的strategy更名为deal，更新后的sql文件为citicup2.sql
 
 ## 2020/10/28
 

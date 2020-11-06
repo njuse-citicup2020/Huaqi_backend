@@ -27,7 +27,7 @@ public class StrategyServiceImpl implements StrategyService {
         int openingFund = 100000000;//商业组给定的期初基金，是定值
         CumulativeRateVO cumulativeRateVO = new CumulativeRateVO();
         List<StrategyPO> strategyPOS = strategyMapper.getStrategyInDateRank(startMonth+" 00:00:00", endMonth+" 23:59:59");
-        int interval = strategyPOS.size()/30;//传给前端的数组大小不要超过30
+        int interval = strategyPOS.size()>30?strategyPOS.size()/30:1;//传给前端的数组大小不要超过30
         for(int i=0;i<strategyPOS.size();i+=interval){
             StrategyPO strategyPO = strategyPOS.get(i);
             cumulativeRateVO.addRate(strategyPO.getDate_time(),strategyPO.getModelProfit()/openingFund, strategyPO.getMarketProfit()/openingFund);
@@ -37,7 +37,6 @@ public class StrategyServiceImpl implements StrategyService {
 
     @Override
     public ResponseVO strategyInfo(String startMonth, String endMonth) {
-        getDaysAndProfit(startMonth,endMonth);
         strategyPOS = strategyMapper.getStrategyInDateRank(startMonth+" 00:00:00", endMonth+" 23:59:59");
         //按date_time排序
         Collections.sort(strategyPOS, new Comparator<StrategyPO>() {
@@ -46,6 +45,7 @@ public class StrategyServiceImpl implements StrategyService {
                 return s1.getDate_time().compareTo(s2.getDate_time());
             }
         });
+        getDaysAndProfit(strategyPOS.get(0).getDate_time(),strategyPOS.get(strategyPOS.size()-1).getDate_time());
         //组装strategyInfoVO
         StrategyInfoVO strategyInfoVO = new StrategyInfoVO(days,profit);
         strategyInfoVO.setMaxProfit(maxProfit());
@@ -64,8 +64,8 @@ public class StrategyServiceImpl implements StrategyService {
 
     @Override
     public ResponseVO strategyOverallInfo() {
-        String start = strategyMapper.getMinDateTime().substring(0,7);
-        String end = strategyMapper.getMaxDateTime().substring(0,7);
+        String start = strategyMapper.getMinDateTime().substring(0,10);
+        String end = strategyMapper.getMaxDateTime().substring(0,10);
         getDaysAndProfit(start,end);
         StrategyOverallInfoVO strategyOverallInfoPO = new StrategyOverallInfoVO(days,profit);
         return ResponseVO.buildSuccess(strategyOverallInfoPO);
@@ -88,8 +88,8 @@ public class StrategyServiceImpl implements StrategyService {
             e.printStackTrace();
         }
         //组装StrategyOverallInfoVO
-        double startProfit = strategyMapper.getModelProfitByDateTime(start).get(0);
-        double endProfit = strategyMapper.getModelProfitByDateTime(end).get(0);
+        double startProfit = strategyMapper.getModelProfitByDateTime(start+" 00:00:00").get(0);
+        double endProfit = strategyMapper.getModelProfitByDateTime(end+" 00:00:00").get(0);
         profit = endProfit-startProfit;
     }
 
