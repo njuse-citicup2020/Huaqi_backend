@@ -33,6 +33,7 @@ public class DealMapperTest {
         dealPO.setTransferFee(300.);
         dealPO.setStatus(StrategyStatus.Success.getStatus());
         dealPO.setTradeId(2);
+        dealPO.setOptionName("50ETF购10月2.95");
         dealMapper.addDeal(dealPO);
         System.out.println(dealMapper.getDealsByTradeId(2));
     }
