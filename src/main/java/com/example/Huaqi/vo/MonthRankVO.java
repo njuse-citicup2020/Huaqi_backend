@@ -8,8 +8,8 @@ public class MonthRankVO {
 
     public MonthRankVO(String start, String end){
         interval = new ArrayList<>(2);
-        interval.add(start.substring(0,7));
-        interval.add(end.substring(0,7));
+        interval.add(start.substring(0,10));
+        interval.add(end.substring(0,10));
     }
 
     public List<String> getInterval() {
