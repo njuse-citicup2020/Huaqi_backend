@@ -16,6 +16,6 @@ public interface DealMapper {
      * @return
      */
     int addDeal(DealPO dealPO);
-
     List<DealPO> getDealsByTradeId(@Param("tradeId") Integer tradeId);
+    int updateDeal(DealPO dealPO);
 }

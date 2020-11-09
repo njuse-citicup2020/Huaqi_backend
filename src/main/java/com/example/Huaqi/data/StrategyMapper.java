@@ -16,4 +16,5 @@ public interface StrategyMapper {
     List<StrategyPO> getStrategyInDateRank(@Param("start_time") String startTime, @Param("end_time") String endTime);
     List<Double> getModelProfitByDateTime(@Param("date_time") String dateTime);
     List<StrategyPO> getAllStrategy();
+    int updateStrategy(StrategyPO strategyPO);
 }

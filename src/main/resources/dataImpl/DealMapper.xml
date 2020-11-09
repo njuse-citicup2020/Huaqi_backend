@@ -9,6 +9,20 @@
     <select id="getDealsByTradeId" resultMap="Deal">
         select * from deal where trade_id=#{tradeId}
     </select>
+    <update id="updateDeal" parameterType="com.example.Huaqi.po.DealPO">
+        update deal set
+        deal_type=#{dealType},
+        deal_name=#{dealTime},
+        status=#{status},
+        volume=#{volume},
+        price_per=#{pricePer},
+        transfer_fee=#{transferFee},
+        price=#{price},
+        trade_id=#{tradeId},
+        item=#{item},
+        option_name=#{optionName}
+        where id=#{id}
+    </update>
 
 
     <resultMap id="Deal" type="com.example.Huaqi.po.DealPO">

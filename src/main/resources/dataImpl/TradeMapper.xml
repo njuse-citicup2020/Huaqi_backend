@@ -3,8 +3,8 @@
 <mapper namespace="com.example.Huaqi.data.TradeMapper">
 
     <insert id="addTrade" parameterType="com.example.Huaqi.po.TradePO">
-        insert  into  trade(trade_type, start_time, end_time, status, profit)
-        values (#{tradeType},#{startTime},#{endTime},#{status},#{profit})
+        insert  into  trade(trade_type, start_time, end_time, status, profit, trade_name, deal_num)
+        values (#{tradeType},#{startTime},#{endTime},#{status},#{profit},#{tradeName},#{dealNum})
     </insert>
 
     <select id="getCompletedTrade" resultMap="Trade">
@@ -18,6 +18,18 @@
     <select id="getUncompletedTradeId" parameterType="java.lang.Integer" resultType="java.lang.Integer">
         select id from trade where status='Pending'
     </select>
+
+    <update id="updateTrade" parameterType="com.example.Huaqi.po.TradePO">
+        update trade set
+        trade_type=#{tradeType},
+        start_time=#{startTime},
+        end_time=#{endTime},
+        status=#{status},
+        profit=#{profit},
+        trade_name=#{tradeName},
+        deal_num=#{dealNum}
+        where id=#{id}
+    </update>
 
 
 

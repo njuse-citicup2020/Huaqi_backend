@@ -1,6 +1,7 @@
 package com.example.Huaqi.data;
 
 import com.example.Huaqi.po.TradePO;
+import com.example.Huaqi.vo.TradeVO;
 import org.apache.ibatis.annotations.Mapper;
 import org.apache.ibatis.annotations.Param;
 import org.springframework.stereotype.Repository;
@@ -14,5 +15,5 @@ public interface TradeMapper {
     List<TradePO> getCompletedTrade();
     TradePO getTradeById(@Param("id") Integer tradeId);
     List<Integer> getUncompletedTradeId();
-
+    int updateTrade(TradePO tradePO);
 }

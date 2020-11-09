@@ -27,6 +27,14 @@
         select * from strategy
     </select>
 
+    <update id="updateStrategy" parameterType="com.example.Huaqi.po.StrategyPO">
+        update strategy set
+        date_time=#{date_time},
+        modelProfit=#{modelProfit},
+        marketProfit=#{marketProfit}
+        where id=#{id}
+    </update>
+
 
 
 </mapper>
