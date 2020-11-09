@@ -17,6 +17,13 @@
     </select>
     <select id="getHedgeOption" resultType="com.example.Huaqi.po.OptionStatisticPO" resultMap="OptionStatistic">
     </select>
+    <select id="getHedgeOptionCode" resultType="java.lang.String">
+        select wset.option_code from `${lvlTableName}` as lvl,`${setTableName}` as wset
+        where concat(lvl.option_code,'.SH') = wset.option_code
+        and wset.last_traded like #{time}
+        and call_put='认沽'
+        order by lvl.delta limit 1
+    </select>
 
     <resultMap id="OptionStatistic" type="com.example.Huaqi.po.OptionStatisticPO">
         <result column="option_date" property="optionDate"/>

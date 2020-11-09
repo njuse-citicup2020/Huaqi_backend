@@ -50,4 +50,6 @@ public class StatisticMapperTest {
             e.printStackTrace();
         }
     }
+
+
 }
