@@ -79,6 +79,23 @@ public class StatisticRepo {
     }
 
     /**
+     * 获取某日50ETF最早的买一价
+     * @param time yyyy-MM-dd HH:mm:ss格式，或者yyyy-MM-dd，都可以
+     * @param optionCode xxxxxxx.SH
+     * @return
+     */
+    public Double getEarliestOptionBid1(String time,String optionCode) throws Exception {
+        if(!(isLegalDate(time,SECOND_FORMAT)||isLegalDate(time,DAY_FORMAT))){
+            throw new Exception("Invalid time input，yyyy-MM-dd HH:mm:ss expected.");
+        }
+        String timeStamp = time.substring(0,10);
+        String table = "daily_statistics@"+timeStamp;
+        String[] tmp = optionCode.split("\\.");
+        String fileName = "%"+tmp[0]+"%";
+        return statisticMapper.getEarliestOptionBid1(table,fileName);
+    }
+
+    /**
      * 获取对冲期权
      * 就是获取下个月到期的 delta最小的 认沽期权
      * @param time yyyy-MM-dd HH:mm:ss格式，最后一位没用，10s为单位
@@ -104,6 +121,28 @@ public class StatisticRepo {
         String code = statisticMapper.getHedgeOptionCode(lvlTable,setTable,timeQuery);
         System.out.println("hedgeOptionCode="+code);
         return getOptionStatistic(time,code);
+    }
+
+    /**
+     * 根据期权code获取在某一天的delta值
+     * @param optionCode xxxxxxx.SH
+     * @param time yyyy-MM-dd HH:mm:ss格式，或者yyyy-MM-dd，都可以
+     * @return delta
+     * @throws Exception
+     */
+    public Double getOptionDelta(String optionCode,String time) throws Exception{
+        if(!(isLegalDate(time,SECOND_FORMAT)||isLegalDate(time,DAY_FORMAT))){
+            throw new Exception("Invalid time input，yyyy-MM-dd HH:mm:ss expected.");
+        }
+        String timeStamp = time.substring(0,10);
+        String table = "daily_lvl_data@"+timeStamp;
+        String[] tmp = optionCode.split("\\.");
+        String code = tmp[0];
+        Double res =  statisticMapper.getOptionDelta(table,code);
+        if(res==null){
+            throw new Exception("Delta No Found. OptionCode\""+code+"\" in table "+table);
+        }
+        return res;
     }
 
     /**

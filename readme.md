@@ -1,5 +1,37 @@
 # 更新日志
 
+## 2020/12/4
+
++ 完成接口
+
+	+ 拿对冲期权的delta值
+
+		`public Double getOptionDelta(String optionCode,String time)`
+
+		demo
+
+		```java
+		        String time = "2020-09-25 09:32:00";
+		        OptionStatisticPO optionStatisticPO = null;
+		        try {
+		            optionStatisticPO = statisticRepo.getHedgeOption(time);
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		        System.out.println(optionStatisticPO);
+		        try {
+		            System.out.println("delta is " + statisticRepo.getOptionDelta(optionStatisticPO.getOptionCode(), time));
+		        } catch (Exception e) {
+		            e.printStackTrace();
+		        }
+		```
+
+	+ 获取T+2日对冲期权最早的买一价
+
+		`public Double getEarliestOptionBid1(String time,String optionCode)`
+
+都在`StatisticRepo.java`中，详见注释
+
 ## 2020/11/9
 
 + 完成了获取对冲期权的接口

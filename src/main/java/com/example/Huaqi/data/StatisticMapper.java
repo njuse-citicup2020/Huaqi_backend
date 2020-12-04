@@ -24,6 +24,9 @@ public interface StatisticMapper {
     //获取某日50ETF最早的买一价
     Double getEarliestETFBid1(@Param("table") String tableName);
 
+    //获取某日某期权最早的买一价
+    Double getEarliestOptionBid1(@Param("table") String tableName,@Param("fileName") String fileName);
+
     //获取某时刻对冲期权
     OptionStatisticPO getHedgeOption(@Param("table") String tableName,@Param("file")String fileName);
 
@@ -35,4 +38,12 @@ public interface StatisticMapper {
      * @return
      */
     String getHedgeOptionCode(@Param("lvlTableName") String lvlTableName,@Param("setTableName") String setTableName, @Param("time") String timeStamp);
+
+    /**
+     * 获取期权delta
+     * @param tableName lvl表名
+     * @param optionCode 期权code
+     * @return delta
+     */
+    Double getOptionDelta(@Param("table")String tableName,@Param("optionCode") String optionCode);
 }

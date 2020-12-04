@@ -24,6 +24,13 @@
         and call_put='认沽'
         order by lvl.delta limit 1
     </select>
+    <select id="getOptionDelta" resultType="java.lang.Double">
+        select delta from `${table}` where option_code = #{optionCode}
+    </select>
+    <select id="getEarliestOptionBid1" resultType="java.lang.Double">
+        select option_bid1_price from `${table}` where file_name like #{fileName}
+        order by object_date asc limit 1;
+    </select>
 
     <resultMap id="OptionStatistic" type="com.example.Huaqi.po.OptionStatisticPO">
         <result column="option_date" property="optionDate"/>
