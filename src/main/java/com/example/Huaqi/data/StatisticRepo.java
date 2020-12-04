@@ -79,7 +79,7 @@ public class StatisticRepo {
     }
 
     /**
-     * 获取某日50ETF最早的买一价
+     * 获取某日某期权最早的买一价
      * @param time yyyy-MM-dd HH:mm:ss格式，或者yyyy-MM-dd，都可以
      * @param optionCode xxxxxxx.SH
      * @return
